@@ -8,38 +8,39 @@ public class Test1
 
     public static void main(String[] args)
     {
-        //1.¼ÓÔØÊı¾İ¿âÇı¶¯µ½ÄÚ´æ
+        //1.åŠ è½½æ•°æ®åº“é©±åŠ¨åˆ°å†…å­˜
         try
         {
             Class.forName("com.mysql.jdbc.Driver");
 
+            
         } catch (ClassNotFoundException e)
         {
             e.printStackTrace();
         }
-        //2.»ñÈ¡Êı¾İ¿âÁ¬½Ó
+        //2.è·å–æ•°æ®åº“è¿æ¥
         Connection conn = null;
         PreparedStatement ps = null;
         try
         {
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/neuedu", "root", "root");
             System.out.println(conn);
-            //3.´´½¨preparedstatement
+            //3.åˆ›å»ºpreparedstatement
             ps = conn.prepareStatement("insert into sorder values(null,?,?,?,?,?,?,?,?)");
-            //4.Ìæ»»£¿ºÅ£¬Ö´ĞĞsqlÓï¾ä
+            //4.æ›¿æ¢ï¼Ÿå·ï¼Œæ‰§è¡Œsqlè¯­å¥
             ps.setInt(1,1);
             ps.setString(2,"openididididididiiddidididi");
             ps.setDouble(3,1000.01);
             ps.setString(4,null);
             ps.setDouble(5,1000.01);
             ps.setString(6,"A");
-            //java.sql.date() Ã»ÓĞÊ±·ÖÃë java.util.date() ÓĞÊ±·ÖÃë
-            //Ê±¼äÔ­µã£º1970Äê1ÔÂ1ÈÕ 0µã0·Ö0Ãë
+            //java.sql.date() æ²¡æœ‰æ—¶åˆ†ç§’ java.util.date() æœ‰æ—¶åˆ†ç§’
+            //æ—¶é—´åŸç‚¹ï¼š1970å¹´1æœˆ1æ—¥ 0ç‚¹0åˆ†0ç§’
             Timestamp now = new Timestamp(System.currentTimeMillis());
             ps.setTimestamp(7,now);
 
             ps.setInt(8,1);
-            //Ö´ĞĞsqlÓï¾ä
+            //æ‰§è¡Œsqlè¯­å¥
             ps.executeUpdate();
 
 
@@ -49,7 +50,7 @@ public class Test1
         }
         finally
         {
-            //5.¹Ø±ÕÁ¬½Ó
+            //5.å…³é—­è¿æ¥
             try
             {
                 ps.close();
